@@ -35,7 +35,7 @@ import { eventData } from '../types/types';
 import store from '../store/index';
 
 export default {
-  name: 'Add',
+  name: 'Edit',
   components: {
     Input,
     ProfileHeader,

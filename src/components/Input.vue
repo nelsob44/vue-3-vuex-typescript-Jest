@@ -3,10 +3,10 @@
         <label class="input_label" v-if="inputitem.type !== 'checkbox'">{{ inputitem.label }}</label>
         <input :class="inputitem.type" v-if="inputitem.type !== 'select' && editData !== null" 
             :type="inputitem.type"
-            v-model="editData[inputitem.name]"
+            :v-model="inputitem.name"
             :checked="inputitem.checked"
             :valid="inputitem.validation"
-            :value="inputitem.value"
+            :value="editData[inputitem.name]"
             @change="$emit('update', {'name': inputitem.name, 'value': (inputitem.type === 'checkbox' ? $event.target.checked : $event.target.value) })"
         />
         <input :class="inputitem.type" v-if="inputitem.type !== 'select' && editData === null" 
