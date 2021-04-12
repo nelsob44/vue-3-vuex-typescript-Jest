@@ -31,6 +31,7 @@ import { defineComponent } from 'vue';
 import Input from '../components/Input.vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
 import Navigation from '../components/Navigation.vue';
+import { eventData } from '../types/types';
 import store from '../store/index';
 
 export default defineComponent({
@@ -76,7 +77,7 @@ export default defineComponent({
         console.log(error);
       })
     },
-    updateForm(event: any){
+    updateForm(event: eventData){
       store.dispatch('addFormUpdate', event).then(() => {
         console.log('data updated');
       }).catch((error) => {

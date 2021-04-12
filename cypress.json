@@ -1,0 +1,8 @@
+{
+  "pluginsFile": false,
+  "supportFile": "tests/support/index.js",
+  "fixturesFolder": "tests/fixtures",
+  "integrationFolder": "tests/e2e",
+  "testFiles": "**/*.spec.js*",
+  "componentFolder": "tests/components"
+}

@@ -6,10 +6,12 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:components": "vue-cli-service test:components"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
+    "@vue/cli-plugin-e2e-cypress": "^4.5.12",
     "bootstrap": "^5.0.0-beta3",
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
@@ -18,6 +20,7 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@cypress/vue": "*",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -32,11 +35,13 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
+    "cypress": "*",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "typescript": "~4.0.0",
+    "vue-cli-plugin-cypress-experimental": "~1.2.0",
     "vue-jest": "^5.0.0-0"
   }
 }

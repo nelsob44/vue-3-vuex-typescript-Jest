@@ -26,3 +26,8 @@ export interface PreferredLanguage {
     label: string,
     value: string
 }
+
+export interface eventData {
+  name: string,
+  value: string | boolean
+}
