@@ -15,13 +15,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Progress',
-  data: () => {
-    return {
-      Add: "Add Form" as string,
-      Edit: "Edit Form" as string
-    }
-  }
+  name: 'Progress'
 });
 </script>
 <style lang="scss" scoped>
