@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import mockData from '../../mockData';
-import { SubmissionData, PreferredLanguage } from '../types/types';
+import { SubmissionData, PreferredLanguage, eventData } from '../types/types';
 
 export default createStore({
   state: {
@@ -151,10 +151,10 @@ export default createStore({
     },
     async addFormUpdate({ commit, state }, event){
       const submissionData = this.getters.getSubmissionData;
-      for(const key in state.submission){
+      for(const key in submissionData){
         key === event.name ? (submissionData[event.name] = event.value) : '';
       }
-      commit('UPDATE_FORM_DATA', submissionData);
+      await commit('UPDATE_FORM_DATA', submissionData);
       return 'updated form entry';
     },
     async fetchEditData({ commit }){
@@ -172,7 +172,7 @@ export default createStore({
       submissionData.passwordsNeverExpire = mockData.settingsData.passwordsNeverExpire;
       submissionData.superUser = mockData.settingsData.superUser;
 
-      commit('SET_EDIT_DATA', submissionData);
+      await commit('SET_EDIT_DATA', submissionData);
       return 'edit data successfully set';
     }
   },

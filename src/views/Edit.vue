@@ -27,68 +27,89 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, onBeforeMount } from "vue";
 import Input from '../components/Input.vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
 import Navigation from '../components/Navigation.vue';
+import { eventData } from '../types/types';
 import store from '../store/index';
 
-export default defineComponent({
-  name: 'Home',
+export default {
+  name: 'Add',
   components: {
     Input,
     ProfileHeader,
     Navigation
   },
-  created() {
-      this.editData();
-      this.preferredLanguagesInit();
-  },
-  computed: {
-    userDetails(){
-      return store.getters.getUserDetailsForm;
-    },
-    settingsDetails(){
-      return store.getters.getSettingsForm;
-    },
-    preferredLanguages(){
-      return store.getters.getPreferredLanguages;
-    },
-    submission(){
-        return store.getters.getSubmissionData;
+
+  setup() {
+    const userDetails = computed(() => store.getters.getUserDetailsForm);
+
+    const settingsDetails = computed(() => store.getters.getSettingsForm);
+
+    const preferredLanguages = computed(() => store.getters.getPreferredLanguages);
+
+    const submission = computed(() => store.getters.getSubmissionData);
+
+    onBeforeMount(() => {
+      preferredLanguagesInit();
+      editData();
+    })
+
+    function initializeEditForm() {
+      store.dispatch('fetchEditData').then(() => {
+        console.log('data fetched');
+      }).catch(() => {
+         console.log('error');
+      })
     }
-  },
-  methods: {
-    editData(){
-        store.dispatch('fetchEditData').then(() => {
-            console.log('edit data fetched');
-        }).catch((error) => {
-            console.log(error);
-        })
-    },
-    preferredLanguagesInit(){
+
+    function preferredLanguagesInit() {
       store.dispatch('fetchPreferredLanguages').then(() => {
         console.log('data fetched');
-      }).catch((error) => {
-        console.log(error);
-      })
-    },
-    submitForm () {
-      store.dispatch('addUserSubmit').then(() => {
-        console.log('data added');
-      }).catch((error) => {
-        console.log(error);
-      })
-    },
-    updateForm(event: any){
-      store.dispatch('addFormUpdate', event).then(() => {
-        console.log('data updated');
-      }).catch((error) => {
-        console.log(error);
+      }).catch(() => {
+         console.log('error');
       })
     }
+
+    function submitForm() {
+      store.dispatch('addUserSubmit').then(() => {
+        console.log('data added');
+      }).catch(() => {
+         console.log('error');
+      })
+    }
+
+    function updateForm(event: eventData) {
+      store.dispatch('addFormUpdate', event).then(() => {
+        console.log('data updated');
+      }).catch(() => {
+         console.log('error');
+      })
+    }
+
+    function editData() {
+      store.dispatch('fetchEditData').then(() => {
+        console.log('edit data fetched');
+      }).catch(() => {
+          console.log('error');
+      })
+    }
+
+    return {
+      userDetails,
+      settingsDetails,
+      preferredLanguages,
+      submission,
+      initializeEditForm,
+      preferredLanguagesInit,
+      submitForm,
+      updateForm,
+      editData
+    }
   }
-});
+}
+
 </script>
 <style lang="scss" scoped>
 .add {

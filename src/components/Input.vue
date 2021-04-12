@@ -74,13 +74,8 @@ export default defineComponent({
         required: true
     },
     editData: {
-        type: Object as PropType<SubmissionData>
-    }
-  },
-  data: () => {
-    return {
-      Add: "Add Form" as string,
-      Edit: "Edit Form" as string
+        type: Object as PropType<SubmissionData>,
+        required: true
     }
   }
 });

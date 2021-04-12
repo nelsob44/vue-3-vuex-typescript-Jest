@@ -21,25 +21,30 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { ref } from 'vue';
 import Button from './Button.vue';
 import Progress from './Progress.vue';
 
-export default defineComponent({
+export default {
   name: 'ProfileHeader',
   components: {
       Button,
       Progress
   },
-  data: () => {
+  setup() {
+    const resetPassword = ref("Reset Password");
+    const saveAll = ref("Save All");
+    const resetButton = ref("reset_button");
+    const saveButton = ref("save_button");
     return {
-      resetPassword: "Reset Password" as string,
-      saveAll: "Save All" as string,
-      resetButton: "reset_button" as string,
-      saveButton: "save_button" as string
+      resetPassword,
+      saveAll,
+      resetButton,
+      saveButton
     }
   }
-});
+}
+
 </script>
 <style lang="scss" scoped>
 .profile {
