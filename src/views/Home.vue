@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div>
+      <router-link to="/add"><Button :buttonText="add" :buttonType="type"/></router-link>
+      <router-link to="/edit"><Button :buttonText="edit" :buttonType="type"/></router-link>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Button from '@/components/Button.vue'; // @ is an alias to /src
+import store from '../store/index';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    HelloWorld,
+    Button,
+  },
+  computed: {
+    add(){
+      return store.getters.getAddText;
+    },
+    edit(){
+      return store.getters.getEditText;
+    },
+    type(){
+      return store.getters.getTypeText;
+    }
   },
 });
 </script>
