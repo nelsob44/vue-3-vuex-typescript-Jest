@@ -27,13 +27,11 @@
   </div>
 </template>
 <script lang="ts">
-
-import { computed, onMounted } from "vue";
 import Input from '../components/Input.vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
 import Navigation from '../components/Navigation.vue';
-import { eventData } from '../types/types';
-import store from '../store/index';
+import useProcessForm from '../modules/processForm';
+
 
 export default {
   name: 'Add',
@@ -44,47 +42,15 @@ export default {
   },
 
   setup() {
-    const userDetails = computed(() => store.getters.getUserDetailsForm);
-
-    const settingsDetails = computed(() => store.getters.getSettingsForm);
-
-    const preferredLanguages = computed(() => store.getters.getPreferredLanguages);
-
-    onMounted(() => {
-      preferredLanguagesInit();
-    })
-
-    function initializeEditForm() {
-      store.dispatch('fetchEditData').then(() => {
-        console.log('data fetched');
-      }).catch(() => {
-         console.log('error');
-      })
-    }
-
-    function preferredLanguagesInit() {
-      store.dispatch('fetchPreferredLanguages').then(() => {
-        console.log('data fetched');
-      }).catch(() => {
-         console.log('error');
-      })
-    }
-
-    function submitForm() {
-      store.dispatch('addUserSubmit').then(() => {
-        console.log('data added');
-      }).catch(() => {
-         console.log('error');
-      })
-    }
-
-    function updateForm(event: eventData) {
-      store.dispatch('addFormUpdate', event).then(() => {
-        console.log('data updated');
-      }).catch(() => {
-         console.log('error');
-      })
-    }
+    const {
+      userDetails,
+      settingsDetails,
+      preferredLanguages,
+      initializeEditForm,
+      preferredLanguagesInit,
+      submitForm,
+      updateForm
+    } = useProcessForm();
 
     return {
       userDetails,
